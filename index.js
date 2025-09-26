@@ -46,12 +46,13 @@ app.get('/update-cobj', async (req, res) => {
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
 app.post('/update-cobj', async (req, res) => {
-    const {dogData} = req.body;
+    const {name, breed, age} = req.body;
+    console.log(name, breed, age);
     const newDog = {
         properties: {
-            "name": dogData.name,
-            "breed": dogData.breed,
-            "age": dogData.age
+            "name": name,
+            "breed": breed,
+            "age": age
         }
     };
     

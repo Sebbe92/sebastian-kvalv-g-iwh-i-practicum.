@@ -8,14 +8,18 @@ html
         h1 Custom Dogs
         p Welcome to the Custom Dogs page!
         p Title: #{title}
-        form (action="/update-cobj" method="post")
+        form(action="/update-cobj" method="post")
             label(for="name") Name:
-            input(type="text" id="name" name="dogData[name]" required)
+            input(type="text" id="name" name="name" required)
             br
             label(for="breed") Breed:
-            input(type="text" id="breed" name="dogData[breed]" required)
+            input(type="text" id="breed" name="breed" required)
             br
             label(for="age") Age:
-            input(type="number" id="age" name="dogData[age]" required)
+            input(type="number" id="age" name="age" required)
+            br
+            label(for="bio") Bio:
+            textarea(id="bio" name="bio")
+            br
             button(type="submit") Update or Create a Dog
         p #{message}
