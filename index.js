@@ -15,7 +15,7 @@ const dogApiUrl = 'https://api.hubapi.com/crm/v3/objects/2-192641628';
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 app.get('/', async (req, res) => {
-    const properties = 'name,breed,age';
+    const properties = 'name,dog_breed,age,bio';
     try {
         const dogObjectsUrl = dogApiUrl + '?properties=' + properties;
         const headers = {
@@ -46,13 +46,13 @@ app.get('/update-cobj', async (req, res) => {
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
 app.post('/update-cobj', async (req, res) => {
-    const {name, breed, age} = req.body;
-    console.log(name, breed, age);
+    const {name, breed, age, bio} = req.body;
     const newDog = {
         properties: {
             "name": name,
-            "breed": breed,
-            "age": age
+            "dog_breed": breed.toLowerCase(),
+            "age": age,
+            "bio": bio,
         }
     };
     
@@ -66,6 +66,7 @@ app.post('/update-cobj', async (req, res) => {
         await axios.post(createDogUrl, newDog, { headers });
         res.redirect('/update-cobj?message=Dog created/updated successfully');
     } catch (error) {
+        console.log(error);
         res.redirect('/update-cobj?message=Error creating/updating dog');
     }
 });
