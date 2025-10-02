@@ -24,6 +24,7 @@ app.get('/', async (req, res) => {
         };
         const response = await axios.get(dogObjectsUrl, { headers });
         const result = response.data.results;
+        console.log(result);
         res.render('index', { title: 'Custom Dogs | HubSpot APIs', result });
     } catch (error) {
         console.error(error);

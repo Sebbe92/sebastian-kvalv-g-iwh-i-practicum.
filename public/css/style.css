@@ -3,7 +3,7 @@
 body, * {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
 h1 {
@@ -55,4 +55,23 @@ input[type="submit"] {
     border: none;
     padding: .375rem 1rem;
     margin-top: 10px;
+}
+table {
+    width: 100%;
+    border-collapse: separate;
+    margin-top: 1rem;
+}
+table th {
+    background-color: #ffcccc;
+}
+table, th, td {
+    border: 1px solid lightgrey;
+    padding: .5rem;
+    text-align: left;
+}
+tr{
+    margin: 0.5rem
+}
+.spacer {
+    height: 50px;
 }

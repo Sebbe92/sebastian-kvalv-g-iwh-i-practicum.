@@ -5,6 +5,20 @@ html
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/css/style.css")
     body    
-        h1 Custom Dogs
-        p Welcome to the Custom Dogs page!
-        p Title: #{title}
+        h1 Custom Dogs Table
+        div.spacer
+        a (href="/update-cobj") Add/Update this table
+        table 
+            thead
+                tr 
+                    th Name
+                    th Breed
+                    th Age
+                    th Bio
+            tbody 
+                for dog in result
+                    tr 
+                        td #{dog.properties.name}
+                        td #{dog.properties.dog_breed}
+                        td #{dog.properties.age}
+                        td #{dog.properties.bio}
