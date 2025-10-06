@@ -12,6 +12,7 @@ app.use(express.json());
 // * Please DO NOT INCLUDE the private app access token in your repo. Don't do this practicum in your normal account.
 const CUSTOM_DOGS_HS_TOKEN = process.env.CUSTOM_DOGS_HS_TOKEN;
 const dogApiUrl = 'https://api.hubapi.com/crm/v3/objects/2-192641628';
+const dogOptionsApiUrl = 'https://api.hubapi.com/crm/v3/properties/2-192641628';
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 app.get('/', async (req, res) => {
@@ -24,10 +25,8 @@ app.get('/', async (req, res) => {
         };
         const response = await axios.get(dogObjectsUrl, { headers });
         const result = response.data.results;
-        console.log(result);
         res.render('index', { title: 'Custom Dogs | HubSpot APIs', result });
     } catch (error) {
-        console.error(error);
         res.status(500).send('Error rendering page');
     }
 });
@@ -36,8 +35,16 @@ app.get('/', async (req, res) => {
 
 app.get('/update-cobj', async (req, res) => {
     const message = req.query.message;
+    const dogBreedOptionsUrl = dogOptionsApiUrl + '/dog_breed';
+    const headers = {
+        Authorization: `Bearer ${CUSTOM_DOGS_HS_TOKEN}`,
+        'Content-Type': 'application/json'
+    };
+    let dogBreedOptions = [];
     try {
-        res.render('update', { title: 'Custom Dogs | Update Dog', message });
+        const response = await axios.get(dogBreedOptionsUrl, { headers });
+        dogBreedOptions = response.data.options;
+        res.render('update', { title: 'Custom Dogs | Update Dog', message, dogBreedOptions });
     } catch (error) {
         console.error(error);
         res.status(500).send('Error rendering page');

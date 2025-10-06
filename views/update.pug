@@ -5,15 +5,17 @@ html
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/css/style.css")
     body    
-        h1 Custom Dogs
-        p Welcome to the Custom Dogs page!
-        p Title: #{title}
-        form(action="/update-cobj" method="post")
+        h1 Custom Dogs Table - Add or Update a Dog
+        div.spacer
+        a(href="/") Return to the homepage
+        form(action="/update-cobj" method="post").form-wrapper
             label(for="name") Name:
             input(type="text" id="name" name="name" required)
             br
             label(for="breed") Breed:
-            input(type="text" id="breed" name="breed" required)
+            select(id="breed" name="breed" required)
+                for option in dogBreedOptions
+                    option(value=option.value) #{option.label}
             br
             label(for="age") Age:
             input(type="number" id="age" name="age" required)

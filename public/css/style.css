@@ -3,9 +3,11 @@
 body, * {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
-
+body {
+    padding: 1rem;
+}
 h1 {
     margin: 1rem;
 }
@@ -66,11 +68,7 @@ table th {
 }
 table, th, td {
     border: 1px solid lightgrey;
-    padding: .5rem;
     text-align: left;
-}
-tr{
-    margin: 0.5rem
 }
 .spacer {
     height: 50px;
