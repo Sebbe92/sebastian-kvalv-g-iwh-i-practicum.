@@ -1,0 +1,27 @@
+doctype html
+html 
+    head 
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body    
+        h1 Custom Dogs Table - Add or Update a Dog
+        div.spacer
+        a(href="/") Return to the homepage
+        form(action="/update-cobj" method="post").form-wrapper
+            label(for="name") Name:
+            input(type="text" id="name" name="name" required)
+            br
+            label(for="breed") Breed:
+            select(id="breed" name="breed" required)
+                for option in dogBreedOptions
+                    option(value=option.value) #{option.label}
+            br
+            label(for="age") Age:
+            input(type="number" id="age" name="age" required)
+            br
+            label(for="bio") Bio:
+            textarea(id="bio" name="bio")
+            br
+            button(type="submit") Update or Create a Dog
+        p #{message}
